@@ -1,17 +1,17 @@
 /** @jsx React.DOM */
 
 /*
-	var ContactsTable = require('../react_components/ContactsTable'); 
+	var ContactsTable = require('../react_components/ContactsTable');
 	React.renderComponent(
 		<ContactsTable pollInterval={500}/>,
 		document.querySelector('ContactsTable')
 	);
 */
 
-var React = require('react')
-	, Backbone = require("backbone")
-	, ContactModel = require("../modules/models/ContactModel")
-	, ContactsCollection = require("../modules/models/ContactsCollection");
+var React = require('react'),
+	Backbone = require('backbone'),
+	ContactModel = require('../modules/models/ContactModel'),
+	ContactsCollection = require('../modules/models/ContactsCollection');
 
 var ContactsTable = React.createClass({
 
@@ -29,7 +29,7 @@ var ContactsTable = React.createClass({
 					<td>{contact.number}</td>
 					<td>{contact.firstName}</td>
 					<td>{contact.lastName}</td>
-					
+
 					<td><a href={deleteLink}>delete{" "}{contact._id}</a></td>
 				</tr>
 			);
@@ -51,7 +51,7 @@ var ContactsTable = React.createClass({
 				</table>
 			</div>
 		);
-	},	
+	},
 
 	getContacts : function() {
 
@@ -67,7 +67,7 @@ var ContactsTable = React.createClass({
 				});
 			}.bind(this))
 	},
-	
+
 	componentWillMount: function() {
 		this.getContacts();
 		setInterval(this.getContacts, this.props.pollInterval);

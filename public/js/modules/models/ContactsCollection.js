@@ -1,4 +1,5 @@
 var Backbone = require("backbone");
+
 var ContactModel = require("./ContactModel");
 
 var ContactsCollection = Backbone.Collection.extend({
@@ -7,4 +8,3 @@ var ContactsCollection = Backbone.Collection.extend({
 });
 
 module.exports = ContactsCollection;
-

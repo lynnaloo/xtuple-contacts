@@ -1,10 +1,11 @@
 /** @jsx React.DOM */
 var React   = require('react');
 var Backbone = require("backbone");
+Backbone.$ = window.$;
 var About = require('../react_components/About');
 
-var HumanForm = require('../react_components/ContactForm');
-var HumansTable = require('../react_components/ContactsTable');
+var ContactsForm = require('../react_components/ContactForm');
+var ContactsTable = require('../react_components/ContactsTable');
 
 Backbone.history.start();
 
@@ -14,6 +15,6 @@ React.renderComponent(
 );
 
 React.renderComponent(
-  <ContactForm/>,
+  <ContactsForm/>,
   document.querySelector('ContactForm')
 );
