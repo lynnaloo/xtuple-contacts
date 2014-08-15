@@ -1,15 +1,15 @@
 /** @jsx React.DOM */
 
 /*
-	var ContactForm = require('../react_components/ContactForm'); 
+	var ContactForm = require('../react_components/ContactForm');
 	React.renderComponent(
 		<ContactForm/>,
 		document.querySelector('ContactForm')
 	);
 */
 
-var React = require('react')
-	, ContactModel = require("../modules/models/ContactModel");
+var React = require('react'),
+	ContactModel = require("../modules/models/ContactModel");
 
 var ContactForm = React.createClass({
 
@@ -32,7 +32,7 @@ var ContactForm = React.createClass({
 				<div className="form-group">
 						<input className="form-control" type="text" placeholder="lastName" ref="lastName"/>
 				</div>
-				
+
 				<div className="form-group">
 					<input className="btn btn-primary" type="submit" value="Add Contact" />
 				</div>
@@ -48,18 +48,17 @@ var ContactForm = React.createClass({
 		var honorific = this.refs.honorific.getDOMNode().value.trim();
 		var firstName = this.refs.firstName.getDOMNode().value.trim();
 		var lastName = this.refs.lastName.getDOMNode().value.trim();
-		
+
 		if (!number) {return false;}
 		if (!honorific) {return false;}
 		if (!firstName) {return false;}
 		if (!lastName) {return false;}
-		
+
 		var data = {};
 		data.number = number;
 		data.honorific = honorific;
 		data.firstName = firstName;
 		data.lastName = lastName;
-		
 
 		var contact= new ContactModel(data);
 
@@ -72,7 +71,7 @@ var ContactForm = React.createClass({
 				this.refs.honorific.getDOMNode().value = '';
 				this.refs.firstName.getDOMNode().value = '';
 				this.refs.lastName.getDOMNode().value = '';
-				
+
 				this.refs.number.getDOMNode().focus();
 			}.bind(this))
 			.fail(function(err) {

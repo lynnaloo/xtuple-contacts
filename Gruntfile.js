@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     browserify: {
-	    options:{
+	    options: {
 		    transform: [ require('grunt-react').browserify ]
 	    },
 		  client: {
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       files: [ "public/js/modules/**/*.js", "public/js/shims/**/*.js", "public/js/react_components/*.js"],
       tasks: [ 'browserify' ]
     }
-  })
-  grunt.loadNpmTasks('grunt-browserify')
-  grunt.loadNpmTasks('grunt-contrib-watch')
-}
+  });
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+};

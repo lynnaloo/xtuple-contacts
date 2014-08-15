@@ -4,8 +4,8 @@ var Contact = require("../models/Contact")();
 
 var ContactsCtrl = {
 	create : function(req, res) {
-		var contact = new Contact(req.body)
-			contact.save(function (err, contact) {
+		var contact = new Contact(req.body);
+		contact.save(function (err, contact) {
 			res.send(contact);
 		});
 	},
@@ -20,7 +20,7 @@ var ContactsCtrl = {
 		});
 	},
 	update : function(req, res) {
-		delete req.body._id
+		delete req.body._id;
 		Contact.update({_id:req.params.id}, req.body, function (err, contact) {
 			res.send(contact);
 		});
@@ -30,6 +30,6 @@ var ContactsCtrl = {
 			res.send(contact);
 		});
 	}
-}
+};
 
 module.exports = ContactsCtrl;

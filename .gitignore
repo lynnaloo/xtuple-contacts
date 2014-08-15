@@ -2,3 +2,4 @@ node_modules
 public/js/bower_components
 *.env
 *.log
+.DS_Store

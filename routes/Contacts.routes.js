@@ -15,14 +15,14 @@ var ContactsRoutes = function(app) {
 		ContactsCtrl.fetch(req, res);
 	});
 
-	app.put("/contacts/:id", function(req, res) {
-		ContactsCtrl.update(req, res);
-	});
+	// app.put("/contacts/:id", function(req, res) {
+	// 	ContactsCtrl.update(req, res);
+	// });
+	//
+	// app.delete("/contacts/:id", function(req, res) {
+	// 	ContactsCtrl.delete(req, res);
+	// });
 
-	app.delete("/contacts/:id", function(req, res) {
-		ContactsCtrl.delete(req, res);
-	});
-
-}
+};
 
 module.exports = ContactsRoutes;

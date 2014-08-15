@@ -1,17 +1,17 @@
 /** @jsx React.DOM */
 
 /*
-	var ContactsList = require('../react_components/ContactsList'); 
+	var ContactsList = require('../react_components/ContactsList');
 	React.renderComponent(
 		<ContactsList pollInterval={500}/>,
 		document.querySelector('ContactsList')
 	);
 */
 
-var React = require('react')
-	, Backbone = require("backbone")
-	, ContactModel = require("../modules/models/ContactModel")
-	, ContactsCollection = require("../modules/models/ContactsCollection");
+var React = require('react'),
+	Backbone = require("backbone"),
+	ContactModel = require("../modules/models/ContactModel"),
+	ContactsCollection = require("../modules/models/ContactsCollection");
 
 var ContactsList = React.createClass({
 
@@ -31,7 +31,7 @@ var ContactsList = React.createClass({
 					{contact.lastName}{" "}
 					<a href={deleteLink}>delete</a>
 				</li>
-				
+
 			);
 		});
 
@@ -78,9 +78,8 @@ var ContactsList = React.createClass({
 			}
 		});
 		this.router = new Router()
-	}	
+	}
 
 });
 
 module.exports = ContactsList;
-

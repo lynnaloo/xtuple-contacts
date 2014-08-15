@@ -10,9 +10,9 @@
   },
   "license": "MIT",
   "author": {
-    "name": "your name",
+    "name": "Linda Nichols",
     "twitter": "@lynnaloo",
-    "url": "http://www.github.com/lynnaloo/xtuple-contacts"
+    "url": "xtuple-contacts.herokuapp.com"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
