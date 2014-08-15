@@ -1,6 +1,9 @@
 ## xTuple Contacts Application
 
-This is a web application that manages Contacts using the xTuple REST API
+This is a web application that manages Contacts using the xTuple REST API.
+
+React.js/Backbone.js scaffolding based on the
+  [generator-react-app](https://github.com/js-experiments/generator-react-app) for Yeoman.
 
 ## How to Get Started:
 
