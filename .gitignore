@@ -5,3 +5,4 @@ public/js/bower_components
 .DS_Store
 *.pem
 keys/*
+public/js/app.built.js
