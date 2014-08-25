@@ -1,13 +1,5 @@
 /** @jsx React.DOM */
 
-/*
-	var ContactsTable = require('../react_components/ContactsTable');
-	React.renderComponent(
-		<ContactsTable pollInterval={500}/>,
-		document.querySelector('ContactsTable')
-	);
-*/
-
 var React = require('react'),
 	Backbone = require('backbone'),
 	ContactModel = require('../modules/models/ContactModel'),
@@ -20,17 +12,16 @@ var ContactsTable = React.createClass({
 	},
 
 	render: function() {
-
-		var contactsRows = this.state.data.map(function(contact){
-			var deleteLink = "#delete_contact/" + contact._id;
+		var models = this.state.data,
+			contactsRows = models.map(function(contact){
+				var deleteLink = "#delete_contact/" + contact.id;
 
 			return (
 				<tr>
-					<td>{contact.number}</td>
-					<td>{contact.firstName}</td>
-					<td>{contact.lastName}</td>
-
-					<td><a href={deleteLink}>delete{" "}{contact._id}</a></td>
+					<td>{contact.get('number')}</td>
+					<td>{contact.get('firstName')}</td>
+					<td>{contact.get('lastName')}</td>
+					<td><a href={deleteLink}>delete{" "}{contact.id}</a></td>
 				</tr>
 			);
 		});
@@ -41,8 +32,10 @@ var ContactsTable = React.createClass({
 				<table className="table table-striped table-bordered table-hover" >
 					<thead>
 						<tr>
-							<th>number</th><th>firstName</th><th>lastName</th>
-							<th>_id</th>
+							<th>Number</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Remove?</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -59,7 +52,7 @@ var ContactsTable = React.createClass({
 
 		contacts.fetch()
 			.done(function(data){
-				this.setState({data : contacts.toJSON(), message : Date()});
+				this.setState({data : contacts, message : ""});
 			}.bind(this))
 			.fail(function(err){
 				this.setState({

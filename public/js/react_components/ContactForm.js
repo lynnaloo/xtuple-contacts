@@ -1,13 +1,5 @@
 /** @jsx React.DOM */
 
-/*
-	var ContactForm = require('../react_components/ContactForm');
-	React.renderComponent(
-		<ContactForm/>,
-		document.querySelector('ContactForm')
-	);
-*/
-
 var React = require('react'),
 	ContactModel = require("../modules/models/ContactModel");
 
@@ -19,20 +11,23 @@ var ContactForm = React.createClass({
 
 	render: function() {
 		return (
-			<form role="form" className="form-horizontal" onSubmit={this.handleSubmit}>
+			<form role="form" onSubmit={this.handleSubmit}>
 				<div className="form-group">
-						<input className="form-control" type="text" placeholder="number" ref="number"/>
+					<label for="inputNumber">Number</label>
+					<input className="form-control" id="inputNumber" type="text" placeholder="number" ref="number"/>
 				</div>
 				<div className="form-group">
-						<input className="form-control" type="text" placeholder="honorific" ref="honorific"/>
+					<label for="inputHonorific">Honorific</label>
+					<input className="form-control" type="text" id="inputHonorific" placeholder="honorific" ref="honorific"/>
 				</div>
 				<div className="form-group">
-						<input className="form-control" type="text" placeholder="firstName" ref="firstName"/>
+					<label for="inputFirstName">First Name</label>
+					<input className="form-control" type="text" id="inputFirstName" placeholder="firstName" ref="firstName"/>
 				</div>
 				<div className="form-group">
-						<input className="form-control" type="text" placeholder="lastName" ref="lastName"/>
+					<label for="inputLastName">Last Name</label>
+					<input className="form-control" type="text" id="inputLastName" placeholder="lastName" ref="lastName"/>
 				</div>
-
 				<div className="form-group">
 					<input className="btn btn-primary" type="submit" value="Add Contact" />
 				</div>

@@ -15,17 +15,28 @@
 </head>
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col-md-6">
+    <div class="page-header">
+      <h1>Contacts</h1>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Contact</div>
+      <div class="panel-body">
         <ContactForm/>
       </div>
-      <div class="col-md-6">
-        <ContactsTable pollIntervall={500}/>
-      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Contacts</div>
+      <ContactsTable pollIntervall={500}/>
     </div>
   </div>
 
-  <script src="js/bower_components/jquery/dist/jquery.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
   <script src="js/app.built.js"></script>
 
 </body>

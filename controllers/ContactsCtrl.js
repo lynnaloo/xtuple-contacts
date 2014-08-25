@@ -1,33 +1,98 @@
-/*=== Contact Controller ===*/
-
-var Contact = require("../models/Contact")();
+var Client = require('xtuple-rest-client');
 
 var ContactsCtrl = {
-	create : function(req, res) {
-		var contact = new Contact(req.body);
-		contact.save(function (err, contact) {
-			res.send(contact);
+	create: function(req, res) {
+		new Client(function (client) {
+			client.query({
+				type: 'Contact',
+				method: 'insert',
+				params: {
+					dueDate: req.body.dueDate,
+					name: req.body.name,
+					isActive:req.body.isActive,
+					status: req.body.status
+				},
+				callback: function (err, result) {
+					if (err) {
+						res.send('Error:', err);
+						return;
+					}
+				}
+			});
 		});
 	},
-	fetchAll : function(req, res) {
-		Contact.find(function (err, contacts) {
-			res.send(contacts);
+	fetchAll: function(req, res) {
+		new Client(function (client) {
+			client.query({
+				type: 'Contact',
+				method: 'list',
+				params: { maxResults: 25 },
+				callback: function (err, result) {
+					if (err) {
+						res.send('Error:', err);
+					}
+					if (result) {
+						res.send(result.data.data);
+					}
+				}
+			});
 		});
 	},
-	fetch : function(req, res) {
-		Contact.find({_id:req.params.id}, function (err, contacts) {
-			res.send(contacts[0]);
+	fetch: function(req, res) {
+		new Client(function (client) {
+			client.query({
+				type: 'Contact',
+				method: 'get',
+				params: {uuid: req.query.id},
+				callback: function (err, result) {
+					if (err) {
+						res.send('Error:', err);
+						return;
+					}
+					if (result) {
+						res.send(result);
+					}
+				}
+			});
 		});
 	},
-	update : function(req, res) {
-		delete req.body._id;
-		Contact.update({_id:req.params.id}, req.body, function (err, contact) {
-			res.send(contact);
+	update: function(req, res) {
+		new Client(function (client) {
+			client.query({
+				type: 'Contact',
+				method: 'update',
+				params: {
+					uuid: req.body.uuid,
+					dueDate: req.body.dueDate,
+					name: req.body.name,
+					isActive:req.body.isActive,
+					status: req.body.status
+				},
+				callback: function (err, result) {
+					if (err) {
+						res.send('Error:', err);
+						return;
+					}
+				}
+			});
 		});
 	},
-	delete : function(req, res) {
-		Contact.findOneAndRemove({_id:req.params.id}, function (err, contact) {
-			res.send(contact);
+	delete: function(req, res) {
+		new Client(function (client) {
+			client.query({
+				type: 'Contact',
+				method: 'delete',
+				params: {
+					uuid: req.params.id
+				},
+				callback: function (err, result) {
+					if (err) {
+						console.log(err);
+						res.send('Error:', err);
+						return;
+					}
+				}
+			});
 		});
 	}
 };

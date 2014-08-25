@@ -11,18 +11,17 @@ var ContactsRoutes = function(app) {
 		ContactsCtrl.fetchAll(req, res);
 	});
 
-	app.get("/contacts/:id", function(req, res) { //try findById
+	app.get("/contacts/:id", function(req, res) {
 		ContactsCtrl.fetch(req, res);
 	});
 
-	// app.put("/contacts/:id", function(req, res) {
-	// 	ContactsCtrl.update(req, res);
-	// });
-	//
-	// app.delete("/contacts/:id", function(req, res) {
-	// 	ContactsCtrl.delete(req, res);
-	// });
+	app.put("/contacts/:id", function(req, res) {
+		ContactsCtrl.update(req, res);
+	});
 
+	app.delete("/contacts/:id", function(req, res) {
+		ContactsCtrl.delete(req, res);
+	});
 };
 
 module.exports = ContactsRoutes;

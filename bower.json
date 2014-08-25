@@ -2,7 +2,6 @@
 	"name": "xtuple-contacts",
 	"version": "0.0.0",
 	"dependencies": {
-		"bootstrap" : "3.1.1"
+		"bootstrap" : "3.2.0"
 	}
 }
-
