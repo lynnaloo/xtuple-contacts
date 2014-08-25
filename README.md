@@ -37,12 +37,16 @@ by the xTuple OAuth 2.0 extension.
 * cd xtuple-contacts
 * Install npm packages
 
-    npm install
+```
+npm install
+```
 
 * Install Bower packages
 
-    npm install bower -g
-    bower install
+```
+npm install bower -g
+bower install
+```
 
 * To start the application, run `node app.js`
 
