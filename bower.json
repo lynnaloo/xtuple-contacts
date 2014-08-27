@@ -1,7 +1,8 @@
 {
-	"name": "xtuple-contacts",
-	"version": "0.0.0",
-	"dependencies": {
-		"bootstrap" : "3.2.0"
-	}
+  "name": "xtuple-contacts",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "3.2.0",
+    "components-font-awesome": "~4.1.0"
+  }
 }

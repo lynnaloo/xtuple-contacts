@@ -6,7 +6,7 @@ var ContactModel = Backbone.Model.extend({
 	},
 
 	urlRoot : "contacts",
-	idAttribute: "uuid"
+	idAttribute: "number"
 });
 
 module.exports = ContactModel;

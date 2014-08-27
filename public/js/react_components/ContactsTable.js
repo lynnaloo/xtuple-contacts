@@ -13,29 +13,31 @@ var ContactsTable = React.createClass({
 
 	render: function() {
 		var models = this.state.data,
+			// TODO: replace with another react object for rows
 			contactsRows = models.map(function(contact){
-				var deleteLink = "#delete_contact/" + contact.id;
+				var deleteLink = "#delete_contact/" + contact.get('number');
 
 			return (
 				<tr>
 					<td>{contact.get('number')}</td>
+					<td>{contact.get('honorific')}</td>
 					<td>{contact.get('firstName')}</td>
 					<td>{contact.get('lastName')}</td>
-					<td><a href={deleteLink}>delete{" "}{contact.id}</a></td>
+					<td><button type="button" className="close"><span aria-hidden="true">&times;</span></button></td>
 				</tr>
 			);
 		});
 
 		return (
 			<div className="table-responsive">
-				<strong>{this.state.message}</strong>
 				<table className="table table-striped table-bordered table-hover" >
 					<thead>
 						<tr>
-							<th>Number</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Remove?</th>
+							<th className="col-md-1">Number</th>
+							<th className="col-md-1">Honorific</th>
+							<th className="col-md-4">First Name</th>
+							<th className="col-md-4">Last Name</th>
+							<th className="col-md-1">Remove?</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,7 +78,7 @@ var ContactsTable = React.createClass({
 			},
 			deleteContact : function(id){
 				console.log("=== delete contact ===", id);
-				new ContactModel({_id:id}).destroy();
+				new ContactModel({number:id}).destroy();
 				this.navigate('/');
 			}
 		});

@@ -9,7 +9,7 @@ var ContactsTable = require('../react_components/ContactsTable');
 Backbone.history.start();
 
 React.renderComponent(
-	<ContactsTable pollInterval={500}/>,
+	<ContactsTable pollInterval={1000}/>,
 	document.querySelector('ContactsTable')
 );
 

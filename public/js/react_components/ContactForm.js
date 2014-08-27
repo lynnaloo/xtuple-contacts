@@ -22,11 +22,11 @@ var ContactForm = React.createClass({
 				</div>
 				<div className="form-group">
 					<label for="inputFirstName">First Name</label>
-					<input className="form-control" type="text" id="inputFirstName" placeholder="firstName" ref="firstName"/>
+					<input className="form-control" type="text" id="inputFirstName" placeholder="first name" ref="firstName"/>
 				</div>
 				<div className="form-group">
 					<label for="inputLastName">Last Name</label>
-					<input className="form-control" type="text" id="inputLastName" placeholder="lastName" ref="lastName"/>
+					<input className="form-control" type="text" id="inputLastName" placeholder="last name" ref="lastName"/>
 				</div>
 				<div className="form-group">
 					<input className="btn btn-primary" type="submit" value="Add Contact" />
