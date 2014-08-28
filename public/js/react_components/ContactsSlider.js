@@ -11,7 +11,7 @@ var ContactsSlider = React.createClass({
 
   render: function() {
     return (
-      <div id="slider" className="carousel slide" data-ride="carousel">
+      <div id="slider" className="carousel slide">
         <div className="carousel-inner">
           <div className="active item">
             <div className="panel panel-default">
@@ -26,12 +26,6 @@ var ContactsSlider = React.createClass({
             </div>
           </div>
         </div>
-        <a className="carousel-control left" href="#slider" data-slide="prev">
-          <span className="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a className="carousel-control right" href="#slider" data-slide="next">
-          <span className="glyphicon glyphicon-chevron-right"></span>
-        </a>
       </div>
     );
   }

@@ -14,7 +14,7 @@ var ContactForm = React.createClass({
 			<form role="form" onSubmit={this.handleSubmit}>
 				<div className="form-group">
 					<label for="inputNumber">Number</label>
-					<input className="form-control" id="inputNumber" type="text" placeholder="number" ref="number"/>
+					<input className="form-control" id="inputNumber" type="text" placeholder="number" ref="number" readonly/>
 				</div>
 				<div className="form-group">
 					<label for="inputHonorific">Honorific</label>
