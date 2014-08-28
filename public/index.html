@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="js/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="js/bower_components/components-font-awesome/css/font-awesome.min.css">
 
+  <link rel="stylesheet" href="css/screen.css">
+
 </head>
 <body>
   <div class="container">
@@ -20,16 +22,8 @@
       <h1>Contacts</h1>
     </div>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">Contact</div>
-      <div class="panel-body">
-        <ContactForm/>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Contacts</div>
-      <ContactsTable pollIntervall={500}/>
+    <div>
+      <ContactsSlider/>
     </div>
   </div>
 
@@ -37,7 +31,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
   <script src="js/app.built.js"></script>
 
 </body>

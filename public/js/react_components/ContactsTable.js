@@ -3,7 +3,8 @@
 var React = require('react'),
 	Backbone = require('backbone'),
 	ContactModel = require('../modules/models/ContactModel'),
-	ContactsCollection = require('../modules/models/ContactsCollection');
+	ContactsCollection = require('../modules/models/ContactsCollection'),
+	ContactItem = require('./ContactItem');
 
 var ContactsTable = React.createClass({
 
@@ -13,19 +14,10 @@ var ContactsTable = React.createClass({
 
 	render: function() {
 		var models = this.state.data,
-			// TODO: replace with another react object for rows
 			contactsRows = models.map(function(contact){
-				var deleteLink = "#delete_contact/" + contact.get('number');
-
-			return (
-				<tr>
-					<td>{contact.get('number')}</td>
-					<td>{contact.get('honorific')}</td>
-					<td>{contact.get('firstName')}</td>
-					<td>{contact.get('lastName')}</td>
-					<td><button type="button" className="close"><span aria-hidden="true">&times;</span></button></td>
-				</tr>
-			);
+				return (
+					<ContactItem data={contact}/>
+				);
 		});
 
 		return (
