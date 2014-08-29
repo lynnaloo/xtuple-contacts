@@ -5,16 +5,16 @@ var React = require('react'),
 
 var ContactForm = React.createClass({
 
-	getInitialState: function() {
+	getInitialState: function () {
 		return {data : [], message : ""};
 	},
 
-	render: function() {
+	render: function () {
 		return (
 			<form role="form" onSubmit={this.handleSubmit}>
 				<div className="form-group">
 					<label for="inputNumber">Number</label>
-					<input className="form-control" id="inputNumber" type="text" placeholder="number" ref="number" readonly/>
+					<input className="form-control" id="inputNumber" type="text" placeholder="number" ref="number"/>
 				</div>
 				<div className="form-group">
 					<label for="inputHonorific">Honorific</label>
@@ -36,9 +36,9 @@ var ContactForm = React.createClass({
 		);
 	},
 
-	componentDidMount: function() {},
-	componentWillMount: function() {},
-	handleSubmit : function() {
+	componentDidMount: function () {},
+	componentWillMount: function () {},
+	handleSubmit : function () {
 		var number = this.refs.number.getDOMNode().value.trim();
 		var honorific = this.refs.honorific.getDOMNode().value.trim();
 		var firstName = this.refs.firstName.getDOMNode().value.trim();
@@ -54,6 +54,8 @@ var ContactForm = React.createClass({
 		data.honorific = honorific;
 		data.firstName = firstName;
 		data.lastName = lastName;
+
+		this.props.onContactSubmit({number: data.number});
 
 		var contact= new ContactModel(data);
 

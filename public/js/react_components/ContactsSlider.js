@@ -5,23 +5,35 @@ var React   = require('react'),
 
 var ContactsSlider = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {data: []};
   },
 
-  render: function() {
+  handleContactSubmit: function (contact) {
+    // the contact form was submitted, have carousel go back
+    console.log("handle contact submit");
+    return false;
+  },
+
+  handleTableRowClick: function (contact) {
+    // the table was clicked, have carousel go forward
+    console.log("handle table row click");
+    return false;
+  },
+
+  render: function () {
     return (
       <div id="slider" className="carousel slide">
         <div className="carousel-inner">
           <div className="active item">
             <div className="panel panel-default">
-              <ContactsTable pollInterval={1000}/>
+              <ContactsTable pollInterval={1000} onTableRowClick={this.handleTableRowClick}/>
             </div>
           </div>
           <div className="item">
             <div className="panel panel-default">
               <div className="panel-body">
-                <ContactForm/>
+                <ContactForm onContactSubmit={this.handleContactSubmit} />
               </div>
             </div>
           </div>

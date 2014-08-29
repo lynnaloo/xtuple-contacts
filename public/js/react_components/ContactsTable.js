@@ -8,15 +8,17 @@ var React = require('react'),
 
 var ContactsTable = React.createClass({
 
-	getInitialState: function() {
+	getInitialState: function () {
 		return {data : [], message : ""};
 	},
 
-	render: function() {
+	render: function () {
 		var models = this.state.data,
+			that = this,
 			contactsRows = models.map(function(contact){
 				return (
-					<ContactItem data={contact}/>
+					// TODO: onClick={that.props.onTableRowClick()}
+					<ContactItem key={contact.get('number')} data={contact}/>
 				);
 		});
 
@@ -40,7 +42,7 @@ var ContactsTable = React.createClass({
 		);
 	},
 
-	getContacts : function() {
+	getContacts : function () {
 
 		var contacts = new ContactsCollection();
 
@@ -60,15 +62,15 @@ var ContactsTable = React.createClass({
 		setInterval(this.getContacts, this.props.pollInterval);
 	},
 
-	componentDidMount: function() {
+	componentDidMount: function () {
 		var Router = Backbone.Router.extend({
 			routes : {
 				"delete_contact/:id" : "deleteContact"
 			},
-			initialize : function() {
+			initialize : function () {
 				console.log("Initialize router of ContactsTable component");
 			},
-			deleteContact : function(id){
+			deleteContact : function (id){
 				console.log("=== delete contact ===", id);
 				new ContactModel({number:id}).destroy();
 				this.navigate('/');
