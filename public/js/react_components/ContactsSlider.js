@@ -12,18 +12,22 @@ var ContactsSlider = React.createClass({
   handleContactSubmit: function (contact) {
     // the contact form was submitted, have carousel go back
     console.log("handle contact submit");
+    // this.refs.theSlider.getDOMNode().focus();
+    // $('.carousel').carousel('prev')
     return false;
   },
 
   handleTableRowClick: function (contact) {
     // the table was clicked, have carousel go forward
     console.log("handle table row click");
+    // this.refs.theSlider.getDOMNode().focus();
+    // $('.carousel').carousel('next')
     return false;
   },
 
   render: function () {
     return (
-      <div id="slider" className="carousel slide">
+      <div id="slider" className="carousel slide" ref="theSlider">
         <div className="carousel-inner">
           <div className="active item">
             <div className="panel panel-default">

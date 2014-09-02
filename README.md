@@ -48,6 +48,12 @@ npm install bower -g
 bower install
 ```
 
+* Install Grunt
+
+```
+npm install -g grunt-cli
+```
+
 * To start the application, run `node app.js`
 
 * Navigate to `http://localhost:3000` in your browser
