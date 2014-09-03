@@ -61,12 +61,13 @@ var ContactsTable = React.createClass({
 
 	deleteContact: function (contact) {
 		console.log("=== delete contact ===", contact.get('number'));
-		//new ContactModel({number:id}).destroy();
+		//contact.destroy();
+		// this.setState();
 	},
 
 	editContact: function (contact) {
 		console.log("=== edit contact ===", contact.get('number'));
-		//new ContactModel({number:id}).destroy();
+		this.props.onEditForm(contact);
 	},
 
 	componentWillMount: function() {
@@ -74,23 +75,7 @@ var ContactsTable = React.createClass({
 		setInterval(this.getContacts, this.props.pollInterval);
 	},
 
-	componentDidMount: function () {
-		// var Router = Backbone.Router.extend({
-		// 	routes : {
-		// 		"delete_contact/:id" : "deleteContact"
-		// 	},
-		// 	initialize : function () {
-		// 		console.log("Initialize router of ContactsTable component");
-		// 	},
-		// 	deleteContact : function (id){
-		// 		console.log("=== delete contact ===", id);
-		// 		new ContactModel({number:id}).destroy();
-		// 		this.navigate('/');
-		// 	}
-		// });
-		// this.router = new Router()
-	}
-
+	componentDidMount: function () {}
 });
 
 module.exports = ContactsTable;
