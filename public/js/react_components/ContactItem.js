@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react'),
+  Backbone = require('backbone');
 
 var ContactItem = React.createClass({
 
@@ -9,8 +10,7 @@ var ContactItem = React.createClass({
   },
 
   render: function() {
-    var item = this.props.data,
-      deleteLink = "#delete_contact/" + item.get('number');
+    var item = this.props.data;
 
     return (
       <tr>
@@ -18,7 +18,23 @@ var ContactItem = React.createClass({
         <td>{item.get('honorific')}</td>
         <td>{item.get('firstName')}</td>
         <td>{item.get('lastName')}</td>
-        <td><button type="button" className="close"><span aria-hidden="true">&times;</span></button></td>
+        <td>
+          <div className="btn-group">
+            <button type="button" className="btn btn-default" onClick={this.props.onEdit}>
+              <span className="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" className="btn btn-default" onClick={this.props.onDelete}>
+              <span className="glyphicon glyphicon-remove"></span>
+            </button>
+            <div className="btn-group">
+              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Other
+                <span className="caret"></span>
+              </button>
+              <ul className="dropdown-menu" role="menu"></ul>
+            </div>
+          </div>
+        </td>
       </tr>
     );
   }

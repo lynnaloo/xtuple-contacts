@@ -14,13 +14,16 @@ var ContactsTable = React.createClass({
 
 	render: function () {
 		var models = this.state.data,
-			that = this,
-			contactsRows = models.map(function(contact){
+			contactsRows = models.map(function (contact) {
 				return (
-					// TODO: onClick={that.props.onTableRowClick()}
-					<ContactItem key={contact.get('number')} data={contact}/>
+					<ContactItem
+						key={contact.get('number')}
+						data={contact}
+						onDelete={this.deleteContact.bind(this, contact)}
+						onEdit={this.editContact.bind(this, contact)}
+					/>
 				);
-		});
+			}, this);
 
 		return (
 			<div className="table-responsive">
@@ -29,9 +32,9 @@ var ContactsTable = React.createClass({
 						<tr>
 							<th className="col-md-1">Number</th>
 							<th className="col-md-1">Honorific</th>
-							<th className="col-md-4">First Name</th>
-							<th className="col-md-4">Last Name</th>
-							<th className="col-md-1">Remove?</th>
+							<th className="col-md-3">First Name</th>
+							<th className="col-md-3">Last Name</th>
+							<th className="col-md-2">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -42,8 +45,7 @@ var ContactsTable = React.createClass({
 		);
 	},
 
-	getContacts : function () {
-
+	getContacts: function () {
 		var contacts = new ContactsCollection();
 
 		contacts.fetch()
@@ -57,26 +59,36 @@ var ContactsTable = React.createClass({
 			}.bind(this))
 	},
 
+	deleteContact: function (contact) {
+		console.log("=== delete contact ===", contact.get('number'));
+		//new ContactModel({number:id}).destroy();
+	},
+
+	editContact: function (contact) {
+		console.log("=== edit contact ===", contact.get('number'));
+		//new ContactModel({number:id}).destroy();
+	},
+
 	componentWillMount: function() {
 		this.getContacts();
 		setInterval(this.getContacts, this.props.pollInterval);
 	},
 
 	componentDidMount: function () {
-		var Router = Backbone.Router.extend({
-			routes : {
-				"delete_contact/:id" : "deleteContact"
-			},
-			initialize : function () {
-				console.log("Initialize router of ContactsTable component");
-			},
-			deleteContact : function (id){
-				console.log("=== delete contact ===", id);
-				new ContactModel({number:id}).destroy();
-				this.navigate('/');
-			}
-		});
-		this.router = new Router()
+		// var Router = Backbone.Router.extend({
+		// 	routes : {
+		// 		"delete_contact/:id" : "deleteContact"
+		// 	},
+		// 	initialize : function () {
+		// 		console.log("Initialize router of ContactsTable component");
+		// 	},
+		// 	deleteContact : function (id){
+		// 		console.log("=== delete contact ===", id);
+		// 		new ContactModel({number:id}).destroy();
+		// 		this.navigate('/');
+		// 	}
+		// });
+		// this.router = new Router()
 	}
 
 });
