@@ -4,6 +4,8 @@ This is a web application that manages Contacts using the xTuple REST API.
 
 React.js/Backbone.js scaffolding based on the
   [generator-react-app](https://github.com/js-experiments/generator-react-app) for Yeoman.
+  
+[![Build Status](https://travis-ci.org/lynnaloo/xtuple-contacts.svg)](https://travis-ci.org/lynnaloo/xtuple-contacts.svg)
 
 ## How to Get Started:
 
