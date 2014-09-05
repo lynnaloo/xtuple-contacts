@@ -1,4 +1,3 @@
-/*=== Contact CRUD Routes ===*/
 var ContactsCtrl = require("../controllers/ContactsCtrl");
 
 var ContactsRoutes = function(app) {

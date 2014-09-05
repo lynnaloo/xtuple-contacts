@@ -8,16 +8,23 @@ var ContactsSlider = React.createClass({
   handleFormSubmit: function (contact) {
     // the contact form was submitted, have carousel go back
     console.log("handle contact submit");
-    // this.refs.theSlider.getDOMNode().focus();
-    // $('.carousel').carousel('prev')
+
+    this.refs.table.setState();
+
+    // slide the carousel to the previous slide and pause
+    $(this.refs.theSlider.getDOMNode()).carousel('prev');
+    $(this.refs.theSlider.getDOMNode()).carousel('pause');
     return false;
   },
 
   handleEditForm: function (contact) {
     // the table was clicked, have carousel go forward
     console.log("show edit form", contact.get('number'));
+
     this.refs.form.setState({data: contact});
-    // todo control slider
+    // slide the carousel to the next slide and pause
+    $(this.refs.theSlider.getDOMNode()).carousel('next');
+    $(this.refs.theSlider.getDOMNode()).carousel('pause');
     return false;
   },
 
@@ -26,16 +33,10 @@ var ContactsSlider = React.createClass({
       <div id="slider" className="carousel slide" ref="theSlider">
         <div className="carousel-inner">
           <div className="active item">
-            <div className="panel panel-default">
-              <ContactsTable pollInterval={1000} onEditForm={this.handleEditForm} ref='table'/>
-            </div>
+            <ContactsTable pollInterval={1000} onEditForm={this.handleEditForm} ref='table'/>
           </div>
           <div className="item">
-            <div className="panel panel-default">
-              <div className="panel-body">
-                <ContactForm onContactSubmit={this.handleFormSubmit} ref='form'/>
-              </div>
-            </div>
+            <ContactForm onContactSubmit={this.handleFormSubmit} ref='form'/>
           </div>
         </div>
       </div>

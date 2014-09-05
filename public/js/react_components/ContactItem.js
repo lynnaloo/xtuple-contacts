@@ -5,10 +5,6 @@ var React = require('react'),
 
 var ContactItem = React.createClass({
 
-  getInitialState: function() {
-    return {data : []};
-  },
-
   render: function() {
     var item = this.props.data;
 
@@ -26,13 +22,6 @@ var ContactItem = React.createClass({
             <button type="button" className="btn btn-default" onClick={this.props.onDelete}>
               <span className="glyphicon glyphicon-remove"></span>
             </button>
-            <div className="btn-group">
-              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Other
-                <span className="caret"></span>
-              </button>
-              <ul className="dropdown-menu" role="menu"></ul>
-            </div>
           </div>
         </td>
       </tr>
