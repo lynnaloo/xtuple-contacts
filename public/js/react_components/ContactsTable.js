@@ -28,7 +28,7 @@ var ContactsTable = React.createClass({
 		return (
 			<div className="panel panel-default">
 				<div className="panel-heading">
-					<button className="btn btn-primary pull-right">
+					<button className="btn btn-primary pull-right" onClick={this.editContact}>
 						<span className="glyphicon glyphicon-plus"></span>
 							Add
 					</button>
@@ -82,7 +82,7 @@ var ContactsTable = React.createClass({
 	},
 
 	editContact: function (contact) {
-		console.log("=== edit contact ===", contact.get('number'));
+		console.log("=== edit contact ===");
 		this.props.onEditForm(contact);
 	},
 

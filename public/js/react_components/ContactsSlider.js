@@ -19,9 +19,7 @@ var ContactsSlider = React.createClass({
 
   handleEditForm: function (contact) {
     // the table was clicked, have carousel go forward
-    console.log("show edit form", contact.get('number'));
-
-    this.refs.form.setState({data: contact});
+    this.refs.form.setState({data: contact}); // add callback?
     // slide the carousel to the next slide and pause
     $(this.refs.theSlider.getDOMNode()).carousel('next');
     $(this.refs.theSlider.getDOMNode()).carousel('pause');

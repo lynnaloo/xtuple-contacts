@@ -1,98 +1,131 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
+	rb = require('react-bootstrap'),
+	Panel = rb.Panel,
+	Input = rb.Input,
 	ContactModel = require("../modules/models/ContactModel"),
 	_ = require('underscore');
 
 var ContactForm = React.createClass({
 
 	getInitialState: function () {
-		return {data : {}, message : ""};
+		return {
+			data : null
+		};
 	},
 
-	render: function () {
-		var contact = this.state.data,
-			number = "",
-			honorific = "",
-			firstName = "",
-			lastName = "";
+	validationState: function (event) {
+		// this should be Backbone valid state
+    var length = event.target.value.length;
+    if (length > 10) return 'success';
+    else if (length > 5) return 'warning';
+    else if (length > 0) return 'error';
+  },
 
-		if (!_.isEmpty(contact)) {
-			number = contact.get('number');
-			honorific = contact.get('honorific');
-			firstName = contact.get('firstName');
-			lastName = contact.get('lastName');
-		}
+	handleChange: function (event) {
+		this.state.data.set(event.target.id, event.target.value);
+  },
+
+	render: function () {
+		console.log(this.state.data);
 
 		return (
-			<div className="panel panel-default">
-				<div className="panel-body">
-					<form role="form" onSubmit={this.handleSubmit}>
-						<div className="form-group">
-							<label for="inputNumber">Number</label>
-							<input className="form-control" id="inputNumber" type="text"
-								placeholder="number" ref="number" value={number}/>
-						</div>
-						<div className="form-group">
-							<label for="inputHonorific">Honorific</label>
-							<input className="form-control" type="text" id="inputHonorific"
-								placeholder="honorific" ref="honorific" value={honorific}/>
-						</div>
-						<div className="form-group">
-							<label for="inputFirstName">First Name</label>
-							<input className="form-control" type="text" id="inputFirstName"
-								placeholder="first name" ref="firstName" value={firstName}/>
-						</div>
-						<div className="form-group">
-							<label for="inputLastName">Last Name</label>
-							<input className="form-control" type="text" id="inputLastName"
-								placeholder="last name" ref="lastName" value={lastName}/>
-						</div>
-						<div className="form-group">
-							<input className="btn btn-primary" type="submit" value="Save" />
-						</div>
-						<div className="form-group"><strong>{this.state.message}</strong></div>
-					</form>
-				</div>
-			</div>
+			<Panel >
+				<form role="form" onSubmit={this.handleSubmit} >
+					<div className="form-group">
+						<Input
+							id="number"
+							type="text"
+							value={this.state.data.get('number')}
+							placeholder="number"
+							label="Number"
+							help=""
+							bsStyle={this.validationState}
+							hasFeedback
+							ref="number"
+							groupClassName="group-class"
+							wrapperClassName="wrapper-class"
+							labelClassName="label-class"
+							onChange={this.handleChange}
+						/>
+					</div>
+					<div className="form-group">
+						<Input
+							id="honorific"
+							type="text"
+							value={this.state.data.get('honorific')}
+							placeholder="honorific"
+							label="Honorific"
+							help=""
+							bsStyle={this.validationState}
+							hasFeedback
+							ref="honorific"
+							groupClassName="group-class"
+							wrapperClassName="wrapper-class"
+							labelClassName="label-class"
+							onChange={this.handleChange}
+						/>
+					</div>
+					<div className="form-group">
+						<Input
+							id="firstName"
+							type="text"
+							value={this.state.data.get('firstName')}
+							placeholder="first name"
+							label="First Name"
+							help=""
+							bsStyle={this.validationState}
+							hasFeedback
+							ref="firstName"
+							groupClassName="group-class"
+							wrapperClassName="wrapper-class"
+							labelClassName="label-class"
+							onChange={this.handleChange}
+						/>
+					</div>
+					<div className="form-group">
+						<Input
+		          id="lastName"
+							type="text"
+		          value={this.state.data.get('lastName')}
+		          placeholder="last name"
+		          label="Last Name"
+		          help=""
+		          bsStyle={this.validationState}
+		          hasFeedback
+		          ref="lastName"
+		          groupClassName="group-class"
+		          wrapperClassName="wrapper-class"
+		          labelClassName="label-class"
+		          onChange={this.handleChange}
+						/>
+					</div>
+					<div className="form-group">
+						<input className="btn btn-primary" type="submit" value="Save"/>
+					</div>
+					<div className="form-group"><strong>{this.state.message}</strong></div>
+				</form>
+			</Panel>
 		);
 	},
 
 	componentDidMount: function () {},
-	componentWillMount: function () {},
+
+	componentWillMount: function () {
+		var contact = new ContactModel();
+		if (!this.state.data) {
+			this.setState({ data: contact });
+		}
+	},
 
 	handleSubmit : function () {
-		var number = this.refs.number.getDOMNode().value.trim();
-		var honorific = this.refs.honorific.getDOMNode().value.trim();
-		var firstName = this.refs.firstName.getDOMNode().value.trim();
-		var lastName = this.refs.lastName.getDOMNode().value.trim();
-
-		// TODO: replace with validation
-		if (!number) {return false;}
-		if (!honorific) {return false;}
-		if (!firstName) {return false;}
-		if (!lastName) {return false;}
-
-		var data = {};
-		data.number = number;
-		data.honorific = honorific;
-		data.firstName = firstName;
-		data.lastName = lastName;
-
-		// TODO: Create new or save existing
-		// var contact = new ContactModel(data);
-		//
-		// contact.save()
+		// this.state.data.save()
 		// 	.done(function(data) {
 		// 		this.setState({
 		// 			message : contact.get('number') + " added!"
 		// 		});
-		// 		// TODO: move this to a clear function
-		// 		this.refs.honorific.getDOMNode().value = '';
-		// 		this.refs.firstName.getDOMNode().value = '';
-		// 		this.refs.lastName.getDOMNode().value = '';
-		//
-		// 		this.refs.number.getDOMNode().focus();
+		// 		// TODO: go back to initial state
 		// 	}.bind(this))
 		// 	.fail(function(err) {
 		// 		this.setState({
