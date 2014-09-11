@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 var React   = require('react'),
-  ContactForm = require('../react_components/ContactForm'),
-  ContactsTable = require('../react_components/ContactsTable');
+  ContactForm = require('./ContactForm'),
+  ContactsTable = require('./ContactsTable'),
+  ContactModel = require('../modules/models/ContactModel');
 
 var ContactsSlider = React.createClass({
 
@@ -19,7 +20,7 @@ var ContactsSlider = React.createClass({
 
   handleEditForm: function (contact) {
     // the table was clicked, have carousel go forward
-    this.refs.form.setState({data: contact}); // add callback?
+    this.refs.form.setState({model: contact}); // add callback?
     // slide the carousel to the next slide and pause
     $(this.refs.theSlider.getDOMNode()).carousel('next');
     $(this.refs.theSlider.getDOMNode()).carousel('pause');
@@ -34,7 +35,7 @@ var ContactsSlider = React.createClass({
             <ContactsTable pollInterval={1000} onEditForm={this.handleEditForm} ref='table'/>
           </div>
           <div className="item">
-            <ContactForm onContactSubmit={this.handleFormSubmit} ref='form'/>
+            <ContactForm onContactSubmit={this.handleFormSubmit} ref='form' Model={ContactModel}/>
           </div>
         </div>
       </div>
