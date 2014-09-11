@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+
 var React   = require('react'),
   ContactForm = require('./ContactForm'),
   ContactsTable = require('./ContactsTable'),
@@ -8,7 +9,7 @@ var React   = require('react'),
 var ContactsSlider = React.createClass({
   /*
     When the form is submitted, the carousel moves
-    back and pauses.
+      back and pauses.
   */
   handleFormSubmit: function (model) {
     this.refs.table.setState();
@@ -35,8 +36,8 @@ var ContactsSlider = React.createClass({
           <div className="active item">
             <ContactsTable
               pollInterval={1000}
-              onEditForm={this.handleEditForm}
               ref='table'
+              onEditForm={this.handleEditForm}
               Collection={ContactsCollection}/>
           </div>
           <div className="item">

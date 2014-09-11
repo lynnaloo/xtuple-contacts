@@ -5,25 +5,38 @@ var React = require('react'),
 
 var FormMixin = {
 
+	/*
+		Default values for model and
+			message.
+	*/
 	getInitialState: function () {
 		return {
-			model : null,
+			model : new this.props.Model(),
 			message : ""
 		};
 	},
 
+	/*
+		Depending on validation, add the css
+			class for success or error.
+	*/
 	validationState: function (event) {
-		if (!event.target.value) {
-			return 'error';
-		}
-		return 'success';
+		console.log(event.target);
+		return event.target.value ? 'success' : 'error';
 	},
 
+	/*
+		Handles widget onChange event.
+	*/
 	handleChange: function (event) {
 		this.state.model.set(event.target.id, event.target.value);
 		return false;
 	},
 
+	/*
+		Handle submission of form. Save model
+			and send primary key to the callback.
+	*/
 	handleSubmit: function (event) {
 		this.state.model.save()
 			.done(function(model) {
@@ -41,16 +54,13 @@ var FormMixin = {
 		return false;
 	},
 
+	/*
+		Don't persist the model and pass
+			an empty object to the callback.
+	*/
 	handleCancel: function (event) {
 		this.props.onModelSubmit({});
 		return false;
-	},
-
-	componentWillMount: function () {
-		if (!this.state.model) {
-			var newModel = new this.props.Model();
-			this.setState({ model: newModel });
-		}
 	}
 };
 
@@ -62,53 +72,49 @@ var ContactForm = React.createClass({
 			<div className="panel panel-default">
 				<div className="panel-body">
 					<form role="form">
-						<div className="form-group">
-							<InputWidget
-								id="number"
-								value={this.state.model.get('number')}
-								placeholder="number"
-								label="Number"
-								style={this.validationState}
-								ref="number"
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="form-group">
-							<InputWidget
-								id="honorific"
-								value={this.state.model.get('honorific')}
-								placeholder="honorific"
-								label="Honorific"
-								style={this.validationState}
-								ref="honorific"
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="form-group">
-							<InputWidget
-								id="firstName"
-								value={this.state.model.get('firstName')}
-								placeholder="first name"
-								label="First Name"
-								style={this.validationState}
-								ref="firstName"
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="form-group">
-							<InputWidget
-			          id="lastName"
-			          value={this.state.model.get('lastName')}
-			          placeholder="last name"
-			          label="Last Name"
-			          style={this.validationState}
-			          ref="lastName"
-			          onChange={this.handleChange}
-							/>
-						</div>
+						<InputWidget
+							id="number"
+							value={this.state.model.get('number')}
+							placeholder="number"
+							label="Number"
+							style={this.validationState}
+							ref="number"
+							onChange={this.handleChange}
+						/>
+						<InputWidget
+							id="honorific"
+							value={this.state.model.get('honorific')}
+							placeholder="honorific"
+							label="Honorific"
+							style={this.validationState}
+							ref="honorific"
+							onChange={this.handleChange}
+						/>
+						<InputWidget
+							id="firstName"
+							value={this.state.model.get('firstName')}
+							placeholder="first name"
+							label="First Name"
+							style={this.validationState}
+							ref="firstName"
+							onChange={this.handleChange}
+						/>
+						<InputWidget
+		          id="lastName"
+		          value={this.state.model.get('lastName')}
+		          placeholder="last name"
+		          label="Last Name"
+		          style={this.validationState}
+		          ref="lastName"
+		          onChange={this.handleChange}
+						/>
 						<div className="btn-group">
-							<button className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
-							<button className="btn" onClick={this.handleCancel}>Cancel</button>
+							<button className="btn btn-primary" onClick={this.handleSubmit}>
+								<span className="glyphicon glyphicon-ok"/> Save
+							</button>
+							<button className="btn btn-default" onClick={this.handleCancel}>
+								<span className="glyphicon glyphicon-remove"/> Cancel
+							</button>
 						</div>
 						<div className="form-group"><strong>{this.state.message}</strong></div>
 					</form>
