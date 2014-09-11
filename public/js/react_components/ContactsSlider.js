@@ -2,40 +2,48 @@
 var React   = require('react'),
   ContactForm = require('./ContactForm'),
   ContactsTable = require('./ContactsTable'),
+  ContactsCollection = require('../modules/models/ContactsCollection'),
   ContactModel = require('../modules/models/ContactModel');
 
 var ContactsSlider = React.createClass({
-
-  handleFormSubmit: function (contact) {
-    // the contact form was submitted, have carousel go back
-    console.log("handle contact submit");
-
+  /*
+    When the form is submitted, the carousel moves
+    back and pauses.
+  */
+  handleFormSubmit: function (model) {
     this.refs.table.setState();
-
-    // slide the carousel to the previous slide and pause
-    $(this.refs.theSlider.getDOMNode()).carousel('prev');
-    $(this.refs.theSlider.getDOMNode()).carousel('pause');
+    $(this.refs.carousel.getDOMNode()).carousel('prev');
+    $(this.refs.carousel.getDOMNode()).carousel('pause');
     return false;
   },
 
-  handleEditForm: function (contact) {
-    // the table was clicked, have carousel go forward
-    this.refs.form.setState({model: contact}); // add callback?
-    // slide the carousel to the next slide and pause
-    $(this.refs.theSlider.getDOMNode()).carousel('next');
-    $(this.refs.theSlider.getDOMNode()).carousel('pause');
+  /*
+    When the add or edit buttons are clicks, the carousel (slider)
+      goes forward and pauses.
+  */
+  handleEditForm: function (model) {
+    this.refs.form.setState({model: model}); // add callback?
+    $(this.refs.carousel.getDOMNode()).carousel('next');
+    $(this.refs.carousel.getDOMNode()).carousel('pause');
     return false;
   },
 
   render: function () {
     return (
-      <div id="slider" className="carousel slide" ref="theSlider">
+      <div id="slider" className="carousel slide" ref="carousel">
         <div className="carousel-inner">
           <div className="active item">
-            <ContactsTable pollInterval={1000} onEditForm={this.handleEditForm} ref='table'/>
+            <ContactsTable
+              pollInterval={1000}
+              onEditForm={this.handleEditForm}
+              ref='table'
+              Collection={ContactsCollection}/>
           </div>
           <div className="item">
-            <ContactForm onContactSubmit={this.handleFormSubmit} ref='form' Model={ContactModel}/>
+            <ContactForm
+              onFormSubmit={this.handleFormSubmit}
+              ref='form'
+              Model={ContactModel}/>
           </div>
         </div>
       </div>

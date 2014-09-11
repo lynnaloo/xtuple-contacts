@@ -2,15 +2,63 @@
 
 var React = require('react'),
 	Backbone = require('backbone'),
-	ContactModel = require('../modules/models/ContactModel'),
-	ContactsCollection = require('../modules/models/ContactsCollection'),
 	ContactItem = require('./ContactItem');
 
 var TableMixin = {
+	/*
+		Set default value of the model array and message.
+	*/
 	getInitialState: function () {
 		return {data : [], message : ""};
-	}
+	},
 
+	/*
+		Fetch the models for the model collection.
+	*/
+	getModels: function () {
+		var models = new this.props.Collection();
+
+		models.fetch()
+			.done(function(data){
+				this.setState({data: models, message: ""});
+			}.bind(this))
+			.fail(function(err){
+				this.setState({
+					message: err.responseText + " " + err.statusText
+				});
+			}.bind(this));
+	},
+
+	/*
+		Destroy this selected model.
+	*/
+	deleteModel: function (model) {
+		model.destroy()
+			.done(function(data){
+				// refresh the data
+				this.setState({data: this.state.data, message: ""});
+			}.bind(this))
+			.fail(function(err){
+				this.setState({
+					message: err.responseText + " " + err.statusText
+				});
+			}.bind(this));
+	},
+
+	/*
+		Send model to edit function in parent component.
+	*/
+	editModel: function (model) {
+		this.props.onEditForm(model);
+	},
+
+	/*
+		Get the collection of models for this table.
+	*/
+	componentWillMount: function() {
+		this.getModels();
+		setInterval(this.getModels, this.props.pollInterval);
+	}
 };
 
 var ContactsTable = React.createClass({
@@ -18,13 +66,13 @@ var ContactsTable = React.createClass({
 
 	render: function () {
 		var models = this.state.data,
-			contactsRows = models.map(function (contact) {
+			tableRows = models.map(function (model) {
 				return (
 					<ContactItem
-						key={contact.get('number')}
-						data={contact}
-						onDelete={this.deleteContact.bind(this, contact)}
-						onEdit={this.editContact.bind(this, contact)}
+						key={model.get('number')}
+						data={model}
+						onDelete={this.deleteModel.bind(this, model)}
+						onEdit={this.editModel.bind(this, model)}
 					/>
 				);
 			}, this);
@@ -33,9 +81,8 @@ var ContactsTable = React.createClass({
 			<div>
 				<div className="panel panel-default">
 					<div className="panel-heading">
-						<button className="btn btn-primary pull-right" onClick={this.editContact}>
-							<span className="glyphicon glyphicon-plus"></span>
-								Add
+						<button className="btn btn-primary pull-right" onClick={this.editModel}>
+							<span className="glyphicon glyphicon-plus"/> Add
 						</button>
 						<div className="clearfix"></div>
 					</div>
@@ -51,7 +98,7 @@ var ContactsTable = React.createClass({
 								</tr>
 							</thead>
 							<tbody>
-								{contactsRows}
+								{tableRows}
 							</tbody>
 						</table>
 					</div>
@@ -59,41 +106,6 @@ var ContactsTable = React.createClass({
 				<div><strong>{this.state.message}</strong></div>
 			</div>
 		);
-	},
-
-	getContacts: function () {
-		var contacts = new ContactsCollection();
-
-		contacts.fetch()
-			.done(function(data){
-				this.setState({data: contacts, message: ""});
-			}.bind(this))
-			.fail(function(err){
-				this.setState({
-					message: err.responseText + " " + err.statusText
-				});
-			}.bind(this))
-	},
-
-	deleteContact: function (contact) {
-		contact.destroy()
-			.done(function(data){
-				this.setState({data: this.state.data, message: ""});
-			}.bind(this))
-			.fail(function(err){
-				this.setState({
-					message: err.responseText + " " + err.statusText
-				});
-			}.bind(this))
-	},
-
-	editContact: function (contact) {
-		this.props.onEditForm(contact);
-	},
-
-	componentWillMount: function() {
-		this.getContacts();
-		setInterval(this.getContacts, this.props.pollInterval);
 	}
 });
 

@@ -21,22 +21,28 @@ var FormMixin = {
 
 	handleChange: function (event) {
 		this.state.model.set(event.target.id, event.target.value);
+		return false;
 	},
 
-	handleSubmit : function () {
+	handleSubmit: function (event) {
 		this.state.model.save()
 			.done(function(model) {
 				this.setState({
-					message : 'Successful save!'
+					message: 'Successful save!'
 				});
 			}.bind(this))
 			.fail(function(err) {
 				this.setState({
-					message  : err.responseText + " " + err.statusText
+					message: err.responseText + " " + err.statusText
 				});
 			}.bind(this));
 
-		this.props.onContactSubmit({number: model.number});
+		this.props.onModelSubmit({number: model.number});
+		return false;
+	},
+
+	handleCancel: function (event) {
+		this.props.onModelSubmit({});
 		return false;
 	},
 
@@ -55,7 +61,7 @@ var ContactForm = React.createClass({
 		return (
 			<div className="panel panel-default">
 				<div className="panel-body">
-					<form role="form" onSubmit={this.handleSubmit} >
+					<form role="form">
 						<div className="form-group">
 							<InputWidget
 								id="number"
@@ -100,7 +106,10 @@ var ContactForm = React.createClass({
 			          onChange={this.handleChange}
 							/>
 						</div>
-							<input className="btn btn-primary" type="submit" value="Save"/>
+						<div className="btn-group">
+							<button className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
+							<button className="btn" onClick={this.handleCancel}>Cancel</button>
+						</div>
 						<div className="form-group"><strong>{this.state.message}</strong></div>
 					</form>
 				</div>
