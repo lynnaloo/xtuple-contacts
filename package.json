@@ -15,11 +15,13 @@
     "url": "xtuple-contacts.herokuapp.com"
   },
   "engines": {
-    "node": "^0.10"
+    "node": "^0.10.29"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "jest"
+    "test": "jest",
+    "ci": "npm install && npm test",
+    "postinstall": "grunt default && bower install"
   },
   "dependencies": {
     "backbone": "1.1.2",
@@ -30,8 +32,9 @@
     "node-uuid": "1.4.1",
     "react": "^0.11.1",
     "react-bootstrap": "^0.11.1",
-    "underscore": "1.6.0",
-    "xtuple-rest-client": "0.0.x"
+    "xtuple-rest-client": "0.0.x",
+    "bower": "^1.3.9",
+    "grunt-cli": "^0.1.13"
   },
   "devDependencies": {
     "browserify": "^5.11.1",
@@ -39,6 +42,7 @@
     "grunt-browserify": "^3.0.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-react": "^0.9.0",
+    "grunt-bower-install": "^1.6.0",
     "bower": "^1.3.9",
     "jest-cli": "^0.1.18"
   }
