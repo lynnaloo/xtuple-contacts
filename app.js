@@ -1,4 +1,3 @@
-/*=== Main Application ===*/
 var express = require('express'),
   app = express(),
   path = require('path'),
@@ -7,12 +6,15 @@ var express = require('express'),
   args = process.argv.splice(2),
   Client = require('xtuple-rest-client');
 
-app.locals.title = "xTuple Contacts App";
+app.locals.title = "xTuple Contacts Application";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// Create static public directory
 app.use(express.static(__dirname + '/public'));
+
 app.set('port', process.env.PORT || 3000);
 
 // All routes here
