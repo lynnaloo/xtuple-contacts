@@ -1,31 +1,36 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+(function () {
+  'use strict';
 
-var ContactItem = React.createClass({
+  var React = require('react');
 
-  render: function() {
-    var item = this.props.data;
+  var ContactItem = React.createClass({
 
-    return (
-      <tr>
-        <td>{item.get('number')}</td>
-        <td>{item.get('honorific')}</td>
-        <td>{item.get('firstName')}</td>
-        <td>{item.get('lastName')}</td>
-        <td>
-          <div className="btn-group">
-            <button type="button" className="btn btn-default" onClick={this.props.onEdit}>
-              <span className="glyphicon glyphicon-pencil"></span>
-            </button>
-            <button type="button" className="btn btn-default" onClick={this.props.onDelete}>
-              <span className="glyphicon glyphicon-remove"></span>
-            </button>
-          </div>
-        </td>
-      </tr>
-    );
-  }
-});
+    render: function() {
+      var item = this.props.data;
 
-module.exports = ContactItem;
+      return (
+        <tr>
+          <td>{item.get('number')}</td>
+          <td>{item.get('honorific')}</td>
+          <td>{item.get('firstName')}</td>
+          <td>{item.get('lastName')}</td>
+          <td>
+            <div className="btn-group">
+              <button type="button" className="btn btn-default" onClick={this.props.onEdit}>
+                <span className="glyphicon glyphicon-pencil"></span>
+              </button>
+              <button type="button" className="btn btn-default" onClick={this.props.onDelete}>
+                <span className="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      );
+    }
+  });
+
+  module.exports = ContactItem;
+
+}());

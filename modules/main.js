@@ -1,13 +1,18 @@
 /** @jsx React.DOM */
-var React   = require('react'),
-	Backbone = require("backbone");
-Backbone.$ = window.$;
 
-var ContactsSlider = require('../react_components/ContactsSlider.jsx');
+(function () {
+	'use strict';
 
-Backbone.history.start();
+	var React = require('react'),
+		Backbone = require('backbone'),
+		ContactsSlider = require('../react_components/ContactsSlider.jsx');
 
-React.renderComponent(
-	<ContactsSlider />,
-	document.querySelector('ContactsSlider')
-);
+	Backbone.$ = window.$;
+	Backbone.history.start();
+
+	React.renderComponent(
+		<ContactsSlider />,
+		document.querySelector('ContactsSlider')
+	);
+
+}());

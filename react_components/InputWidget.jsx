@@ -1,38 +1,43 @@
 /** @jsx React.DOM */
 
-var React = require('react'),
-  rb = require('react-bootstrap'),
-  Input = rb.Input;
+(function () {
+  'use strict';
 
-var InputWidget = React.createClass({
-  propTypes: {},
+  var React = require('react'),
+    rb = require('react-bootstrap'),
+    Input = rb.Input;
 
-  getDefaultProps: function() {
-    return {
-      type: 'text'
-    };
-  },
+  var InputWidget = React.createClass({
+    propTypes: {},
 
-  render: function () {
-    return (
-      <div className="form-group">
-        <Input
-          type={this.props.type}
-          id={this.props.id}
-          value={this.props.value}
-          placeholder={this.props.placeholder}
-          label={this.props.label}
-          bsStyle={this.props.style}
-          hasFeedback
-          ref={this.props.ref}
-          groupClassName="group-class"
-          wrapperClassName="wrapper-class"
-          labelClassName="label-class"
-          onChange={this.props.onChange}
-        />
-      </div>
-    );
-  },
-});
+    getDefaultProps: function() {
+      return {
+        type: 'text'
+      };
+    },
 
-module.exports = InputWidget;
+    render: function () {
+      return (
+        <div className="form-group">
+          <Input
+            type={this.props.type}
+            id={this.props.id}
+            value={this.props.value}
+            placeholder={this.props.placeholder}
+            label={this.props.label}
+            bsStyle={this.props.style}
+            hasFeedback
+            ref={this.props.ref}
+            groupClassName="group-class"
+            wrapperClassName="wrapper-class"
+            labelClassName="label-class"
+            onChange={this.props.onChange}
+          />
+        </div>
+      );
+    },
+  });
+
+  module.exports = InputWidget;
+
+}());

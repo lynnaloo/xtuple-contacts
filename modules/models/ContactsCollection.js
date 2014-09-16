@@ -1,10 +1,13 @@
-var Backbone = require("backbone");
+(function () {
+	'use strict';
 
-var ContactModel = require("./ContactModel");
+	var Backbone = require('backbone'),
+		ContactModel = require('./ContactModel'),
+		ContactsCollection = Backbone.Collection.extend({
+			url : 'contacts',
+			model: ContactModel
+		});
 
-var ContactsCollection = Backbone.Collection.extend({
-	url : "contacts",
-	model: ContactModel
-});
+	module.exports = ContactsCollection;
 
-module.exports = ContactsCollection;
+}());

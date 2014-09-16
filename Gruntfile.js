@@ -18,7 +18,10 @@ module.exports = function (grunt) {
       }
     },
     jshint: {
-      all: ['modules/main.js', 'modules/**/*.js', 'react_components/*.jsx']
+      all: ['modules/main.js', 'modules/**/*.js', 'react_components/*.jsx'],
+      options: {
+        newcap: false
+      }
     }
   });
 

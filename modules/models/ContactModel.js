@@ -1,12 +1,13 @@
-var Backbone = require("backbone");
+(function () {
+	'use strict';
 
-var ContactModel = Backbone.Model.extend({
-	defaults: {
-		isActive: true,
-	},
+	var Backbone = require('backbone'),
+		ContactModel = Backbone.Model.extend({
+			defaults: { isActive: true },
+			urlRoot : 'contacts',
+			idAttribute: 'number'
+		});
 
-	urlRoot : "contacts",
-	idAttribute: "number"
-});
+	module.exports = ContactModel;
 
-module.exports = ContactModel;
+}());
