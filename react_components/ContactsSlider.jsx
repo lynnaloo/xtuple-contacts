@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
 var React   = require('react'),
-  ContactForm = require('./ContactForm'),
-  ContactsTable = require('./ContactsTable'),
+  ContactForm = require('./ContactForm.jsx'),
+  ContactsTable = require('./ContactsTable.jsx'),
   ContactsCollection = require('../modules/models/ContactsCollection'),
+  // TODO: send a new model to the form
   ContactModel = require('../modules/models/ContactModel');
 
 var ContactsSlider = React.createClass({
@@ -23,6 +24,7 @@ var ContactsSlider = React.createClass({
       goes forward and pauses.
   */
   handleEditForm: function (model) {
+    model = model || new ContactModel();
     this.refs.form.setState({model: model}); // add callback?
     $(this.refs.carousel.getDOMNode()).carousel('next');
     $(this.refs.carousel.getDOMNode()).carousel('pause');
@@ -43,8 +45,7 @@ var ContactsSlider = React.createClass({
           <div className="item">
             <ContactForm
               onFormSubmit={this.handleFormSubmit}
-              ref='form'
-              Model={ContactModel}/>
+              ref='form'/>
           </div>
         </div>
       </div>

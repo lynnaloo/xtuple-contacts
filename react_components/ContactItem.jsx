@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
-var React = require('react'),
-  Backbone = require('backbone');
+var React = require('react');
 
 var ContactItem = React.createClass({
 

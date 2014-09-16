@@ -2,7 +2,7 @@
 
 var React = require('react'),
 	Backbone = require('backbone'),
-	ContactItem = require('./ContactItem');
+	ContactItem = require('./ContactItem.jsx');
 
 var TableMixin = {
 	/*
@@ -81,7 +81,7 @@ var ContactsTable = React.createClass({
 			<div>
 				<div className="panel panel-default">
 					<div className="panel-heading">
-						<button className="btn btn-primary pull-right" onClick={this.editModel}>
+						<button className="btn btn-primary pull-right" onClick={this.editModel.bind(this, null)}>
 							<span className="glyphicon glyphicon-plus"/> Add
 						</button>
 						<div className="clearfix"></div>

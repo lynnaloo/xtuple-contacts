@@ -26,7 +26,7 @@ var ContactsCtrl = {
 			client.query({
 				type: 'Contact',
 				method: 'list',
-				params: { maxResults: 25 },
+				params: { maxResults: 100 },
 				callback: function (err, result) {
 					if (err) {
 						res.send('Error:', err);

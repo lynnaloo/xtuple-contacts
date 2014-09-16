@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-	InputWidget = require('./InputWidget');
+	InputWidget = require('./InputWidget.jsx'),
+	ContactModel = require('../modules/models/ContactModel');
 
 var FormMixin = {
 
@@ -11,7 +12,7 @@ var FormMixin = {
 	*/
 	getInitialState: function () {
 		return {
-			model : new this.props.Model(),
+			model : new ContactModel(),
 			message : ""
 		};
 	},
@@ -21,7 +22,6 @@ var FormMixin = {
 			class for success or error.
 	*/
 	validationState: function (event) {
-		console.log(event.target);
 		return event.target.value ? 'success' : 'error';
 	},
 
@@ -68,6 +68,7 @@ var ContactForm = React.createClass({
 	mixins: [FormMixin], // Mixin common form logic
 
 	render: function () {
+
 		return (
 			<div className="panel panel-default">
 				<div className="panel-body">
